@@ -2,7 +2,7 @@ import next from 'next'
 import express from 'express'
 import pages from './pages'
 
-const app = next()
+const app = next({ dev: true })
 const handle = app.getRequestHandler()
 
 app.prepare()
