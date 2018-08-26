@@ -31,7 +31,7 @@ function Pages({ pages }) {
           return variations.map((variation) => (
             <div>
               <span>{variation.description}</span>
-              <span>{typeof URI(`http://localhost:8180/${variation.baseFile}`).query({
+              <span>{URI(`http://localhost:8180/${variation.baseFile}`).query({
                 houseplant: variation.label
               }).toString()}</span>
             </div>
