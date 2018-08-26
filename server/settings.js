@@ -4,7 +4,7 @@ import { join } from 'path'
 const DEFAULT_SETTINGS = {
   rootDir: '.',
   distDir: 'dist',
-  configureName: 'configure.json',
+  configureName: 'configure.js',
   port: 8080,
   host: '0.0.0.0'
 }
