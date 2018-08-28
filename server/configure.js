@@ -1,6 +1,6 @@
 import { mkdirs } from 'fs-extra'
 import path from 'path'
-
+import { short } from 'git-rev-sync'
 import settings from './settings'
 
 const mockRootPath = settings.rootDir
@@ -22,5 +22,6 @@ export function reload() {
 }
 
 const configure = loadConfigure()
+configure.gitHash = short()
 
 export default configure
