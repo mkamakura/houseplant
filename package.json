@@ -1,4 +1,9 @@
 {
+  "name": "houseplant",
+  "version": "0.0.0",
+  "description": "HTML Design Mock Manager",
+  "author": "mkamakura <kamakura.masaya@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "@material-ui/core": "^3.0.1",
     "cheerio": "^1.0.0-rc.2",
@@ -26,6 +31,5 @@
     "cross-env": "^5.2.0",
     "jest": "^23.5.0",
     "prettier": "^1.14.2"
-  },
-  "license": "MIT"
+  }
 }

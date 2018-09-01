@@ -49,38 +49,40 @@ function Pages({ pages }) {
             <CardContent>
               {isArray(page.variations)
                 ? (() => {
-                    const variations = page.variations
-                    return variations.map(variation => (
+                  const variations = page.variations
+                  return variations.map(variation => {
+                    const uri = URI(`http://localhost:8180/${page.uri}/${variation.baseFile}`)
+                      .query({
+                        houseplant: variation.label
+                      })
+                      .toString()
+                    return (
                       <div>
-                        <span>{variation.description}</span>
-                        <span>
-                          {URI(`http://localhost:8180/${page.uri}/${variation.baseFile}`)
-                            .query({
-                              houseplant: variation.label
-                            })
-                            .toString()}
-                        </span>
+                        <div>{variation.description}</div>
+                        <a href={uri}>{uri}</a>
                       </div>
-                    ))
-                  })()
+                    )
+                  })
+                })()
                 : Object.keys(page.variations).map(key => {
-                    const variations = page.variations[key]
+                  const variations = page.variations[key]
                     return variations.map(variation => {
                       const { label, description } = variation
+                      const uri = URI(`http://localhost:8180/${page.uri}/${variation.baseFile}`)
+                        .query({
+                          houseplant: label,
+                          device: key
+                        })
+                        .toString()
                       return (
                         <div>
+                          <div>
                           <Icon>
                             {key === 'pc' ? 'desktop_windows' : 'smartphone'}
                           </Icon>
                           <span>{description}</span>
-                          <span>
-                            {URI(`http://localhost:8180/${page.uri}/${variation.baseFile}`)
-                              .query({
-                                houseplant: label,
-                                device: key
-                              })
-                              .toString()}
-                          </span>
+                          </div>
+                          <a href={uri}>{uri}</a>
                         </div>
                       )
                     })
