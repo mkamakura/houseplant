@@ -57,7 +57,7 @@ export default (req, res, next) => {
   this.set('Content-Type', 'text/html')
 }
 
-function isToGetHtmlFile(uri) {
+export function isToGetHtmlFile(uri) {
   return extname(getPathname(uri)) === '.html'
 }
 
