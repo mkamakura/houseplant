@@ -14,7 +14,6 @@ export function loadConfigure() {
     console.err(err)
     process.exit()
   }
-
 }
 
 export function reload() {

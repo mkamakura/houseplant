@@ -6,18 +6,17 @@ import settings from './settings'
 const app = next({ dev: true })
 const handle = app.getRequestHandler()
 
-app.prepare()
-  .then(() => {
-    const server = express()
-    server.use(pages)
+app.prepare().then(() => {
+  const server = express()
+  server.use(pages)
 
-    server.get('*', (req, res) => {
-      return handle(req, res)
-    })
-
-    const { port, host } = settings
-    server.listen(port, host, (err) => {
-      if (err) throw err
-      console.log(`> Ready on http://${host}:${port}`)
-    })
+  server.get('*', (req, res) => {
+    return handle(req, res)
   })
+
+  const { port, host } = settings
+  server.listen(port, host, err => {
+    if (err) throw err
+    console.log(`> Ready on http://${host}:${port}`)
+  })
+})

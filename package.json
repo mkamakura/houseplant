@@ -16,7 +16,8 @@
     "dev": "babel-node ./server/server.js",
     "build": "next build",
     "start": "next start",
-    "test": "cross-env NODE_ENV=test jest --no-cache"
+    "test": "cross-env NODE_ENV=test jest --no-cache",
+    "fmt": "prettier --no-semi --single-quote --write \"+(pages|server|__tests__)/**/*.js\""
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
@@ -24,7 +25,8 @@
     "@babel/node": "7.0.0",
     "@babel/preset-env": "7.0.0",
     "cross-env": "^5.2.0",
-    "jest": "^23.5.0"
+    "jest": "^23.5.0",
+    "prettier": "^1.14.2"
   },
   "license": "MIT"
 }

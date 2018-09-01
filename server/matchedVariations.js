@@ -29,4 +29,5 @@ function hasMatchedVariations(variations, ctx) {
   })
 }
 
-export default (variations = [], ctx) => hasMatchedVariations(variations, ctx).shift()
+export default (variations = [], ctx) =>
+  hasMatchedVariations(variations, ctx).shift()
