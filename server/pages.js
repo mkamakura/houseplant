@@ -1,8 +1,8 @@
 import url from 'url'
+import { get } from 'lodash/fp'
 import { join, extname, dirname } from 'path'
 import fs from 'fs-extra'
 import cheerio from 'cheerio'
-import jsonql from 'jsonql'
 import settings from './settings'
 import configure from './configure'
 
@@ -36,12 +36,12 @@ export default (req, res, next) => {
   const { originalUrl, query } = req
 
   if (!isToGetHtmlFile(originalUrl)) return next()
-  if (!hasRulesAndHouseplantQuery(configure, originalUrl)) return next()
+  if (!hasRulesAndHouseplantQuery(configure, originalUrl, query)) return next()
   const rules = getRules(configure, originalUrl)
   console.info(INDENT, `pages: ${rules.uri}`)
 
-  const variations = jsonql(query.houseplant, rules)
-  const matched = matchedVariations(variations, this) || variations[0]
+  const variations = getVariations(rules, query)
+  const matched = matchedVariations(variations, req) || variations[0]
   const { manipulate, baseFile } = matched
 
   const baseFileDir =
@@ -74,28 +74,36 @@ export default (req, res, next) => {
     src = $.html()
   }
 
-  this.body = importPartsHTML(
+  res.set('Content-Type', 'text/html')
+  res.send(importPartsHTML(
     src.toString('utf8'),
     get('subRoots.parts')(configure)
-  )
-  this.set('Content-Type', 'text/html')
+  ))
+}
+
+export function getVariations(rules, query) {
+  const { device, houseplant } = query
+  const variations = rules.variations
+  if (device) {
+    return variations[device].filter((variation) => variation.label === houseplant)
+  } else {
+    return variations.filter((variation) => variation.label === houseplant)
+  }
 }
 
 export function isToGetHtmlFile(uri) {
   return extname(getPathname(uri)) === '.html'
 }
 
-function hasRulesAndHouseplantQuery(config, uri) {
-  const pathname = getPathname(uri)
-  const rules = config.pages.find(page => page.uri === pathname)
-  return !rules || !query.houseplant
+export function hasRulesAndHouseplantQuery(config, uri, query) {
+  return getRules(config, uri) && query.houseplant
 }
 
-function getPathname(uri) {
+export function getPathname(uri) {
   return url.parse(uri).pathname
 }
 
-function getRules(config, uri) {
+export function getRules(config, uri) {
   const pathname = getPathname(uri)
   return config.pages.find(page => page.uri === pathname)
 }

@@ -6,10 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
-import CardMedia from '@material-ui/core/CardMedia'
 import CardContent from '@material-ui/core/CardContent'
-import CardActions from '@material-ui/core/CardActions'
-import Avatar from '@material-ui/core/Avatar'
 import Icon from '@material-ui/core/Icon'
 import configure from '../mocks/configure' // TODO
 
@@ -57,7 +54,7 @@ function Pages({ pages }) {
                       <div>
                         <span>{variation.description}</span>
                         <span>
-                          {URI(`http://localhost:8180/${variation.baseFile}`)
+                          {URI(`http://localhost:8180/${page.uri}/${variation.baseFile}`)
                             .query({
                               houseplant: variation.label
                             })
@@ -77,7 +74,7 @@ function Pages({ pages }) {
                           </Icon>
                           <span>{description}</span>
                           <span>
-                            {URI(`http://localhost:8180/${variation.baseFile}`)
+                            {URI(`http://localhost:8180/${page.uri}/${variation.baseFile}`)
                               .query({
                                 houseplant: label,
                                 device: key

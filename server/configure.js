@@ -9,7 +9,7 @@ mkdirs(mockRootPath)
 export function loadConfigure() {
   const filePath = path.join(mockRootPath, settings.configureName)
   try {
-    return require(filePath)
+    return require(filePath).default
   } catch (err) {
     console.err(err)
     process.exit()
