@@ -26,7 +26,6 @@ class MyApp extends App {
 
   render() {
     const { Component, pageProps, reduxStore } = this.props
-    console.log(this.pageContext)
     return (
       <Container>
         <Provider store={reduxStore}>
