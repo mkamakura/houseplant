@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import PropTypes from 'prop-types'
 import Document, { Head, Main, NextScript } from 'next/document'
 import flush from 'styled-jsx/server'
@@ -14,32 +14,35 @@ export default class MyDocument extends Document {
 
     return (
       <html>
-      <Head>
-        <title>houseplant</title>
-        <meta charSet="utf-8"/>
-        <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
-        />
-        <meta name="theme-color" content={pageContext.theme.palette.primary.main}/>
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="https://meyerweb.com/eric/tools/css/reset/reset.css"
-        />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
-        />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/icon?family=Material+Icons"
-        />
-      </Head>
-      <body>
-      <Main/>
-      <NextScript/>
-      </body>
+        <Head>
+          <title>houseplant</title>
+          <meta charSet="utf-8" />
+          <meta
+            name="viewport"
+            content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+          />
+          <meta
+            name="theme-color"
+            content={pageContext.theme.palette.primary.main}
+          />
+          <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://meyerweb.com/eric/tools/css/reset/reset.css"
+          />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+          />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
       </html>
     )
   }
@@ -77,7 +80,7 @@ MyDocument.getInitialProps = ctx => {
     }
 
     WrappedComponent.propTypes = {
-      pageContext: PropTypes.object.isRequired,
+      pageContext: PropTypes.object.isRequired
     }
 
     return WrappedComponent
@@ -92,10 +95,12 @@ MyDocument.getInitialProps = ctx => {
         <style
           id="jss-server-side"
           // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: pageContext.sheetsRegistry.toString() }}
+          dangerouslySetInnerHTML={{
+            __html: pageContext.sheetsRegistry.toString()
+          }}
         />
         {flush() || null}
       </React.Fragment>
-    ),
+    )
   }
 }

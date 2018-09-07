@@ -23,7 +23,6 @@ class MyApp extends App {
     }
   }
 
-
   render() {
     const { Component, pageProps, reduxStore } = this.props
     return (
@@ -31,11 +30,13 @@ class MyApp extends App {
         <Provider store={reduxStore}>
           <JssProvider
             registry={this.pageContext.sheetsRegistry}
-            generateClassName={this.pageContext.generateClassName}>
+            generateClassName={this.pageContext.generateClassName}
+          >
             <MuiThemeProvider
               theme={this.pageContext.theme}
-              sheetsManager={this.pageContext.sheetsManager}>
-              <CssBaseline/>
+              sheetsManager={this.pageContext.sheetsManager}
+            >
+              <CssBaseline />
               <Component pageContext={this.pageContext} {...pageProps} />
             </MuiThemeProvider>
           </JssProvider>

@@ -75,19 +75,20 @@ export default (req, res, next) => {
   }
 
   res.set('Content-Type', 'text/html')
-  res.send(importPartsHTML(
-    src.toString('utf8'),
-    get('subRoots.parts')(configure)
-  ))
+  res.send(
+    importPartsHTML(src.toString('utf8'), get('subRoots.parts')(configure))
+  )
 }
 
 export function getVariations(rules, query) {
   const { device, houseplant } = query
   const variations = rules.variations
   if (device) {
-    return variations[device].filter((variation) => variation.label === houseplant)
+    return variations[device].filter(
+      variation => variation.label === houseplant
+    )
   } else {
-    return variations.filter((variation) => variation.label === houseplant)
+    return variations.filter(variation => variation.label === houseplant)
   }
 }
 

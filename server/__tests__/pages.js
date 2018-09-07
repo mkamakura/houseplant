@@ -3,16 +3,14 @@ import {
   hasRulesAndHouseplantQuery,
   getPathname,
   getRules,
-  getVariations,
+  getVariations
 } from '../pages'
 
 test('pages:getVariations', () => {
   const rules = {
     variations: {
-      pc: [
-        { label: 'default' },
-      ],
-    },
+      pc: [{ label: 'default' }]
+    }
   }
 
   const query = { houseplant: 'default', device: 'pc' }
@@ -28,11 +26,12 @@ test('pages:hasRulesAndHouseplantQuery', () => {
   const config = {
     pages: [
       {
-        uri: '/test/index.html',
-      },
-    ],
+        uri: '/test/index.html'
+      }
+    ]
   }
-  const uri = 'http://houseplant.com/test/index.html?houseplant=default&device=pc'
+  const uri =
+    'http://houseplant.com/test/index.html?houseplant=default&device=pc'
   const query = { houseplant: 'default', device: 'pc' }
   const queryOnlyDevice = { device: 'pc' }
   expect(hasRulesAndHouseplantQuery(config, uri, query)).toBeTruthy()
@@ -40,7 +39,8 @@ test('pages:hasRulesAndHouseplantQuery', () => {
 })
 
 test('pages:getPathname', () => {
-  const uri = 'http://houseplant.com/test/index.html?houseplant=default&device=pc'
+  const uri =
+    'http://houseplant.com/test/index.html?houseplant=default&device=pc'
   expect(getPathname(uri)).toEqual('/test/index.html')
 })
 
@@ -48,9 +48,9 @@ test('pages:getRules', () => {
   const config = {
     pages: [
       {
-        uri: '/test/index.html',
-      },
-    ],
+        uri: '/test/index.html'
+      }
+    ]
   }
   const uri = 'http://houseplant.com/test/index.html'
   expect(getRules(config, uri)).toEqual(config.pages[0])

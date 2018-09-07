@@ -11,7 +11,7 @@ import Icon from '@material-ui/core/Icon'
 import Switch from '@material-ui/core/Switch'
 import FormGroup from '@material-ui/core/FormGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles'
 
 import configure from '../mocks/configure' // TODO
 
@@ -26,8 +26,8 @@ export default () => {
         <Typography variant="headline" gutterBottom>
           HTML
         </Typography>
-        {<SiteSelect siteGroup={siteGroup}/>}
-        {<Pages pages={pages}/>}
+        {<SiteSelect siteGroup={siteGroup} />}
+        {<Pages pages={pages} />}
       </main>
       <style jsx>{`
         main {
@@ -45,14 +45,7 @@ function SiteSelect({ siteGroup }) {
         {Object.entries(siteGroup).map(([key, val]) => (
           <FormControlLabel
             key={key}
-            control={
-              <Switch
-                checked={true}
-                onChange={() => {
-                }}
-                value={key}
-              />
-            }
+            control={<Switch checked={true} onChange={() => {}} value={key} />}
             label={val}
           />
         ))}
@@ -61,7 +54,7 @@ function SiteSelect({ siteGroup }) {
   )
 }
 
-const MyCard = withStyles({ root: { 'margin-bottom': 20 }})(Card);
+const MyCard = withStyles({ root: { 'margin-bottom': 20 } })(Card)
 
 function Pages({ pages }) {
   return (
@@ -69,48 +62,56 @@ function Pages({ pages }) {
       {pages.map(page => {
         return (
           <MyCard key={page.uri}>
-            <CardHeader title={page.description} subheader={page.uri}/>
+            <CardHeader title={page.description} subheader={page.uri} />
             <CardContent>
               {isArray(page.variations)
                 ? (() => {
-                  const variations = page.variations
-                  return variations.map(variation => {
-                    const uri = URI(`http://localhost:8180/${page.uri}/${variation.baseFile}`)
-                      .query({
-                        houseplant: variation.label,
-                      })
-                      .toString()
-                    return (
-                      <div key={variation.label} className="cardContent">
-                        <div>{variation.description}</div>
-                        <a href={uri}>{uri}</a>
-                      </div>
-                    )
-                  })
-                })()
-                : Object.keys(page.variations).map(key => {
-                  const variations = page.variations[key]
-                  return variations.map(variation => {
-                    const { label, description } = variation
-                    const uri = URI(`http://localhost:8180/${page.uri}/${variation.baseFile}`)
-                      .query({
-                        houseplant: label,
-                        device: key,
-                      })
-                      .toString()
-                    return (
-                      <div className="cardContent">
-                        <div>
-                          <Icon>
-                            {key === 'pc' ? 'desktop_windows' : 'smartphone'}
-                          </Icon>
-                          <span>{description}</span>
+                    const variations = page.variations
+                    return variations.map(variation => {
+                      const uri = URI(
+                        `http://localhost:8180/${page.uri}/${
+                          variation.baseFile
+                        }`
+                      )
+                        .query({
+                          houseplant: variation.label
+                        })
+                        .toString()
+                      return (
+                        <div key={variation.label} className="cardContent">
+                          <div>{variation.description}</div>
+                          <a href={uri}>{uri}</a>
                         </div>
-                        <a href={uri}>{uri}</a>
-                      </div>
-                    )
-                  })
-                })}
+                      )
+                    })
+                  })()
+                : Object.keys(page.variations).map(key => {
+                    const variations = page.variations[key]
+                    return variations.map(variation => {
+                      const { label, description } = variation
+                      const uri = URI(
+                        `http://localhost:8180/${page.uri}/${
+                          variation.baseFile
+                        }`
+                      )
+                        .query({
+                          houseplant: label,
+                          device: key
+                        })
+                        .toString()
+                      return (
+                        <div className="cardContent">
+                          <div>
+                            <Icon>
+                              {key === 'pc' ? 'desktop_windows' : 'smartphone'}
+                            </Icon>
+                            <span>{description}</span>
+                          </div>
+                          <a href={uri}>{uri}</a>
+                        </div>
+                      )
+                    })
+                  })}
             </CardContent>
           </MyCard>
         )
