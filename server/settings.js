@@ -2,7 +2,7 @@ import { readJSONSync } from 'fs-extra'
 import { join } from 'path'
 
 const DEFAULT_SETTINGS = {
-  rootDir: '.',
+  rootDir: 'mocks',
   distDir: 'dist',
   configureName: 'configure.js',
   port: 8080,
