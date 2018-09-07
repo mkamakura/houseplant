@@ -44,6 +44,7 @@ function SiteSelect({ siteGroup }) {
       <FormGroup row>
         {Object.entries(siteGroup).map(([key, val]) => (
           <FormControlLabel
+            key={key}
             control={
               <Switch
                 checked={true}
@@ -67,7 +68,7 @@ function Pages({ pages }) {
     <div>
       {pages.map(page => {
         return (
-          <MyCard>
+          <MyCard key={page.uri}>
             <CardHeader title={page.description} subheader={page.uri}/>
             <CardContent>
               {isArray(page.variations)
@@ -80,7 +81,7 @@ function Pages({ pages }) {
                       })
                       .toString()
                     return (
-                      <div>
+                      <div key={variation.label} className="cardContent">
                         <div>{variation.description}</div>
                         <a href={uri}>{uri}</a>
                       </div>
@@ -98,7 +99,7 @@ function Pages({ pages }) {
                       })
                       .toString()
                     return (
-                      <div>
+                      <div className="cardContent">
                         <div>
                           <Icon>
                             {key === 'pc' ? 'desktop_windows' : 'smartphone'}
@@ -114,6 +115,11 @@ function Pages({ pages }) {
           </MyCard>
         )
       })}
+      <style jsx>{`
+        .cardContent {
+          margin-bottom: 10px;
+        }
+      `}</style>
     </div>
   )
 }
